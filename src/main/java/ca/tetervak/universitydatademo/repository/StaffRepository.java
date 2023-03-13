@@ -1,6 +1,7 @@
 package ca.tetervak.universitydatademo.repository;
 
 import ca.tetervak.universitydatademo.domain.Staff;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
@@ -8,5 +9,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  *
  * Created by maryellenbowman
  */
-public interface StaffRepository extends PagingAndSortingRepository<Staff,Integer> {
+public interface StaffRepository extends JpaRepository<Staff,Integer> {
 }
