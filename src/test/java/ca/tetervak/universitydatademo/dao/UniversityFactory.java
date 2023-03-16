@@ -10,7 +10,7 @@ import ca.tetervak.universitydatademo.domain.Student;
  * Testing Helper class that initializes the database with a seeded
  * set of students, staff, courses and deparments
  */
-class UniversityFactory {
+public class UniversityFactory {
 
     public static void fillUniversity(UniversityService service) {
         service.deleteAll();
