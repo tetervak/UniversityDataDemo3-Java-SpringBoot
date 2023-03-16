@@ -3,14 +3,15 @@ package ca.tetervak.universitydatademo.domain;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * JPA Entity for a Course offered at the University.
- * <p>
+ *
  * Created by maryellenbowman.
  */
 @Entity
-@Table(name = "course")
+@Table(name="COURSE")
 public class Course {
     @Id
     @GeneratedValue
@@ -25,8 +26,7 @@ public class Course {
     @OneToOne
     private Staff instructor;
 
-    @ManyToMany(fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Course> prerequisites = new ArrayList<>();
 
 
@@ -59,11 +59,18 @@ public class Course {
         return department;
     }
 
-    public Course addPrerequisite(Course prerequisite) {
+    public Course addPrerequisite(Course prerequisite){
         prerequisites.add(prerequisite);
         return this;
     }
 
+    public Integer getCredits() {
+        return credits;
+    }
+
+    public List<Course> getPrerequisites() {
+        return prerequisites;
+    }
 
     @Override
     public String toString() {
@@ -74,5 +81,18 @@ public class Course {
                 ", instructor=" + instructor +
                 ", department=" + department.getName() +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Course course = (Course) o;
+        return id.equals(course.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

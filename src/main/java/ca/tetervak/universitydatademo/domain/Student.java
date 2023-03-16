@@ -3,14 +3,15 @@ package ca.tetervak.universitydatademo.domain;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * JPA Entity representing a student at the University.
- * <p>
+ *
  * Created by maryellenbowman
  */
 @Entity
-@Table(name = "student")
+@Table(name="STUDENT")
 public class Student {
     @Id
     @GeneratedValue
@@ -67,5 +68,18 @@ public class Student {
     public String toString() {
         return "Student{" + "studentId=" + studentId + ", " + attendee +  ", fullTime=" + fullTime +
                 ", age=" + age + "}\n";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return studentId.equals(student.studentId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(studentId);
     }
 }

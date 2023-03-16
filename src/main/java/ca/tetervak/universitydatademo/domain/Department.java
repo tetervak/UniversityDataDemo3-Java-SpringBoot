@@ -3,14 +3,15 @@ package ca.tetervak.universitydatademo.domain;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * JPA Entity for a Department of study at the University.
- * <p>
+ *
  * Created by maryellenbowman
  */
 @Entity
-@Table(name = "department")
+@Table(name="Department")
 public class Department {
     @Id
     @GeneratedValue
@@ -22,8 +23,7 @@ public class Department {
     @OneToOne
     private Staff chair;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy="department",
-            cascade = CascadeType.ALL)
+    @OneToMany
     private List<Course> courses = new ArrayList<>();
 
     public Department(String name, Staff chair) {
@@ -46,6 +46,14 @@ public class Department {
         courses.add(course);
     }
 
+    public Staff getChair() {
+        return chair;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -65,5 +73,18 @@ public class Department {
                 ", name='" + name + '\'' +
                 ", id=" + id +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Department that = (Department) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

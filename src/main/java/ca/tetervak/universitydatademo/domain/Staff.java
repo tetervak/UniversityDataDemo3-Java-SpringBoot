@@ -1,6 +1,8 @@
 package ca.tetervak.universitydatademo.domain;
 
 import jakarta.persistence.*;
+import jakarta.persistence.Id;
+import java.util.Objects;
 
 /**
  * JPA Entity representing a staff member of a department.
@@ -8,7 +10,7 @@ import jakarta.persistence.*;
  * Created by maryellenbowman
  */
 @Entity
-@Table(name="staff_member")
+@Table(name="Staff_member")
 public class Staff {
     @Id
     @GeneratedValue
@@ -28,11 +30,28 @@ public class Staff {
         return member;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return "Staff{" +
                 "id=" + id +
                 ", member=" + member +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Staff staff = (Staff) o;
+        return id.equals(staff.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
