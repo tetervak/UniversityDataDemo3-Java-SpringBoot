@@ -17,7 +17,7 @@ public interface StudentRepository extends CrudRepository<Student, Integer>{
     List<Student> findByAge(Integer age);
     List<Student> findByAttendeeLastName(String last);
 
-    //Query Methods with Clauses and Exrpessions
+    //Query Methods with Clauses and Expressions
     Student findByAttendeeFirstNameAndAttendeeLastName(String firstName, String lastName);
     Student findByAttendee(Person person);
     List<Student> findByAgeGreaterThan(int minimumAge);

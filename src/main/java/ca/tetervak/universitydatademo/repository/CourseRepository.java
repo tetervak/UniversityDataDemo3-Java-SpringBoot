@@ -33,9 +33,9 @@ public interface CourseRepository extends CrudRepository<Course,Integer> {
             "(c.name, c.instructor.member.lastName, c.department.name) from Course c where c.id=?1")
     CourseView getCourseView(int courseId) ;
 
-    List<Course> findByCredits(@Param("credits") int credits);
+    List<Course> findByCredits(int credits);
 
-    Page<Course> findByCredits(@Param("credits") int credits, Pageable pageable);
+    Page<Course> findByCredits(int credits, Pageable pageable);
 
     Course findByDepartmentName(String deptName);
 
