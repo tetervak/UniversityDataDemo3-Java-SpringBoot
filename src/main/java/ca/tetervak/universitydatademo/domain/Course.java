@@ -25,10 +25,8 @@ public class Course {
     @OneToOne
     private Staff instructor;
 
-    @ManyToMany(fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Course> prerequisites = new ArrayList<>();
-
 
     @ManyToOne
     private Department department;

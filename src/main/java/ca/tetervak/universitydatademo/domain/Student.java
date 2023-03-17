@@ -25,8 +25,7 @@ public class Student {
     @Column
     private Integer age;
 
-    @OneToMany(fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL)
+    @ManyToMany
     private List<Course> courses = new ArrayList<>();
 
     public Student(Person attendee, boolean fullTime, Integer age) {
